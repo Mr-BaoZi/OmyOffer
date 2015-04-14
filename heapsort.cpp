@@ -11,8 +11,10 @@ void swap(int x,int y){
     h[y]=t;
 }
 
+//向下调整
 void siftdown(int i){
 	int t,flag=0;
+	//（子树）根节点与最小孩子交换
 	while( i*2<=n && flag==0){
 		if(h[i] > h[i*2]){
 			t = i*2;
@@ -35,21 +37,23 @@ void siftdown(int i){
 	}
 }
 
+//创建（最小）堆
 void create(){
 	for(int i=n/2;i>=1;i--){
 		siftdown(i);
 	}
 }
+//删除堆顶节点
 int deleteMax(){
 	int t;
 	t = h[1];
-	h[1]=h[n];
+	h[1]=h[n];//尾节点放到堆顶 重新向下调整
 	n--;
 	siftdown(1);
 	return t;
 }
 int main() {
-	// your code goes here
+	
 	int i,num;
 	cin>>num;
 	for(i=1;i<=num;i++){
@@ -59,7 +63,7 @@ int main() {
 	
 	create();
 	for(i=1;i<=num;i++){
-		cout<<h[i]<<"~~~~";
+		cout<<h[i]<<"---";
 	}
 	
 	for(i=1;i<=num;i++){
